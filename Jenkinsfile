@@ -1,6 +1,11 @@
 pipeline{
     agent any
     stages{
+        stage("Pulling image"){
+            steps{
+                bat "docker pull samirshh9/selenium-docker"
+            }
+        }
         stage("Create Grid"){
             steps{
                 bat "docker-compose up -d hub chrome firefox"
@@ -14,7 +19,7 @@ pipeline{
     }
     post{
         always{
-            archiveArtifacts artifacts: 'C:\\Users\\samir\\Desktop\\Artifacts\\', followSymlinks: false
+            archiveArtifacts artifacts: 'Artifacts/**'
             bat "docker-compose down"
         }
     }
