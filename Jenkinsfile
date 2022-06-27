@@ -14,7 +14,7 @@ pipeline{
     }
     post{
         always{
-            archiveArtifacts artifacts: 'Artifacts/**'
+            archiveArtifacts artifacts: 'C:\\Users\\samir\\Desktop\\Artifacts\\', followSymlinks: false
             bat "docker-compose down"
         }
     }
