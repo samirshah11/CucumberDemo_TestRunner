@@ -2,7 +2,6 @@ version: "3"
 services:
   hub:
     image: selenium/hub:4.0.0-rc-2-20210930
-    container_name: seleniumhub
     ports:
       - "4444:4444"
       - "4442:4442"
@@ -16,7 +15,7 @@ services:
     depends_on:
       - hub
     environment:
-      - SE_EVENT_BUS_HOST=seleniumhub
+      - SE_EVENT_BUS_HOST=hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   firefox:
@@ -28,7 +27,7 @@ services:
     depends_on:
       - hub
     environment:
-      - SE_EVENT_BUS_HOST=seleniumhub
+      - SE_EVENT_BUS_HOST=hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   SeleniumDocker:
